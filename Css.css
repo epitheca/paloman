@@ -308,6 +308,13 @@ img.pourcent {
  margin-right: auto;
 }
 
+.centrer {
+max-width: 400px;
+width:100%;
+text-align:center;
+margin:auto;
+}
+
  /*Div pour afficher/masquer un div */
 #hidden { display: block; }
 #hidden_0 { display: none; }

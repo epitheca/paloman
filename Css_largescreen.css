@@ -113,7 +113,7 @@ padding-top:20%;
 
 .sous-titre
 {
-font-size:1.7vw;
+font-size:1.5vw;
 }
 
 .img_entete{
@@ -196,7 +196,7 @@ text-align:center;
 .vert{
 background-color:#4f9242;
 color:white;
-font-size:1.7vw;
+font-size:1vw;
 }
 
 /*Div contenant gauche et droit */
@@ -240,7 +240,7 @@ text-align:justify;
 }
 
 input {
-  font-size:1.5vw;
+  font-size:1vw;
   font-family:arial;
   padding-left:5px;
   margin-top:10px;
@@ -256,7 +256,7 @@ select {
 }
 
 label {
- font-size:1.5vw;
+ font-size:1vw;
   font-family:arial;
   padding-left:5px;
   margin-top:10px;

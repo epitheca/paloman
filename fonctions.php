@@ -174,6 +174,13 @@ function INSFichier ($numero, $nom, $bd)
 $ins_fichier = "INSERT INTO fichiers (numero_donnee, identifiant) VALUES ('$numero', '$nom') "; 
 $res = $bd->execRequete ($ins_fichier);
  }
+ 
+ // Insertion d'un fichier logo
+function INSFichierLogo ($fichier, $code, $bd)
+{
+$ins_fichier = "UPDATE structure SET fichier_logo='$fichier' WHERE code='$code'"; 
+$res = $bd->execRequete ($ins_fichier);
+ }
 
 // Insertion d'une donnée avec coordonnées	
 function INSDonnees ($date, $longitude, $latitude, $sps, $abo, $info_1, $info_2, $sexe, $corine1, $corine2, $corine3, $corine4, $obs1, $obs2, $obs3, $origineDonnee, $choix, $vent, $cond_clim, $temp, $riviere, $route, $remarques, $bd)
@@ -406,6 +413,14 @@ $res = $bd->execRequete
     return $bd->objetSuivant ($res);
   else
     return $bd->ligneSuivante ($res);   	
+}
+
+// Recherche du nom d'une structure
+function ChercheStructure ($code, $bd)
+{
+$res = $bd->execRequete 
+     ("SELECT * FROM structure WHERE code_responsable='$code'");
+    return $bd->objetSuivant ($res);
 }
 
 //Fonction pour la recherche d'observateurs associés
