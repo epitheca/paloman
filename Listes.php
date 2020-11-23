@@ -183,46 +183,6 @@ foreach($liste_rivieres as $code => $description) {
 } 
 
 //Création de la liste des groupes
-function form_groupe_simple ($groupe, $bd)
-{
-// Listes des groupes
-$resultat  = $bd->execRequete ("SELECT * FROM classe_ordre WHERE (Abrevclasseordre<>1 AND Abrevclasseordre<>'BA')");
-  while ($classe_ordre = $bd->objetSuivant ($resultat))
-    $liste_classe_ordre[$classe_ordre->Code_classe_ordre] = $classe_ordre->Classe_ordre;
-?>
-Groupe :<select name="classe_ordre" onchange='submit()'>
-<?php
-foreach($liste_classe_ordre as $code => $description) {  
-	if ($groupe==$code)   echo "<option selected value=\"$code\">$description</option>\n";         
-  else echo "<option value=\"$code\">$description</option>\n";
-}
-	if ($groupe=="%") echo "<option selected value='%'>---Choisissez un groupe---</option>\n"; 
-?>
-</select>
-<?php
-}
-
-//Création de la liste des groupes
-function form_groupe_simple_sans_update ($groupe, $bd)
-{
-// Listes des groupes
-$resultat  = $bd->execRequete ("SELECT * FROM classe_ordre WHERE (Abrevclasseordre<>1)");
-  while ($classe_ordre = $bd->objetSuivant ($resultat))
-    $liste_classe_ordre[$classe_ordre->Code_classe_ordre] = $classe_ordre->Classe_ordre;
-?>
-Groupe :<select name="classe_ordre">
-<?php
-foreach($liste_classe_ordre as $code => $description) {  
-	if ($groupe==$code)   echo "<option selected value=\"$code\">$description</option>\n";         
-  else echo "<option value=\"$code\">$description</option>\n";
-}
-	if ($groupe=="%") echo "<option selected value='%'>---Choisissez un groupe---</option>\n"; 
-?>
-</select>
-<?php
-}
-
-//Création de la liste des groupes
 function form_groupe_avec_tous ($groupe, $margegauche, $largeur, $bd)
 {
 //Création du style
@@ -233,35 +193,10 @@ $resultat  = $bd->execRequete ("SELECT * FROM classe_ordre");
   while ($classe_ordre = $bd->objetSuivant ($resultat))
   $liste_classe_ordre[$classe_ordre->Code_classe_ordre] = $classe_ordre->Classe_ordre;
 ?>
-Groupe :<select name="classe_ordre" onchange='submit()' <?php echo $style;?>>
+Groupe : <select name="classe_ordre" onchange='submit()' <?php echo $style;?>>
 <?php
 	if ($groupe=="tous") echo "<option selected value=\"tous\">Tous les groupes</option>\n";
 	else echo "<option value=\"tous\">Tous les groupes</option>\n";
-foreach($liste_classe_ordre as $code => $description) {  
-	if ($groupe==$code)   echo "<option selected value=\"$code\">$description</option>\n";         
-  else echo "<option value=\"$code\">$description</option>\n";
-}
-?>
-</select>
-<?php
-}
-
-//Création de la liste des groupes filtrés
-function form_groupe_avec_filtre ($code_obs, $groupe, $margegauche, $largeur, $bd)
-{
-//Création du style
-$style=styleduselect($margegauche, $largeur);
-			
-	//Création du filtre
-	$resultat  = $bd->execRequete ("SELECT * FROM classe_ordre WHERE $ListeCoordination");
-	  while ($classe_ordre = $bd->objetSuivant ($resultat))
-	$liste_classe_ordre[$classe_ordre->Code_classe_ordre] = $classe_ordre->Classe_ordre;
-  
-?>
-Groupe :<select name="classe_ordre" onchange='submit()' <?php echo $style;?>>
-<?php
-	if ($groupe=="tous") echo "<option selected value=\"tous\">Tous les groupes que vous coordonnez</option>\n";
-	else echo "<option value=\"tous\">Tous les groupes que vous coordonnez</option>\n";
 foreach($liste_classe_ordre as $code => $description) {  
 	if ($groupe==$code)   echo "<option selected value=\"$code\">$description</option>\n";         
   else echo "<option value=\"$code\">$description</option>\n";
@@ -568,42 +503,6 @@ foreach($liste_communes as $code => $description) {
 </select>
 <?php   
 }	
-
-// création liste pour les chiros
-function form_cause_mort_chiro ($cause_mort, $bd)
-{
-$resultat  = $bd->execRequete ("SELECT * FROM chiro_mort");
-  while ($mort = $bd->objetSuivant ($resultat))
-    $liste_mort[$mort->cause_mort] = "$mort->valeur_cause_mort";  
-    ?>
-Nature de l'observation :<select name="cause_mort">
-<?php
-foreach($liste_mort as $code => $description) {             
-		if ($cause_mort==$code)   echo "<option selected value=\"$code\">$description</option>\n";
-  else echo "<option value=\"$code\">$description</option>\n";
-}
-?>
-</select> 
-<?php
-} 
-
-// création liste activite sexuelle
-function form_act_sex_chiro ($act, $bd)
-{
-$resultat  = $bd->execRequete ("SELECT * FROM chiro_activite_sexuelle");
-  while ($sexe = $bd->objetSuivant ($resultat))
-    $liste_sexe[$sexe->act] = "$sexe->valeur_act";  
-    ?>
-Activite sexuelle :<select name="act_sexuelle">
-<?php
-foreach($liste_sexe as $code => $description) {             
-		if ($act==$code)   echo "<option selected value=\"$code\">$description</option>\n";
-  else echo "<option value=\"$code\">$description</option>\n";
-}
-?>
-</select> 
-<?php
-} 
 
 function form_case_det ($determinateur, $obs1, $obs2, $obs3, $origineDonnee, $bd)
 {

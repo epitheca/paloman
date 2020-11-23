@@ -48,27 +48,5 @@ function Formobservateurs ($mode, $code, $bd)
 </div>
 	<?php	
          }
-        }
-  
- if ($mode == "INSERTION")
-   {	   
-	   ?>
-<div class="demi-gauche">
-	<form method="post" action="Observateurs_maj_admin.php">  
-		<div class="bloc-50%-clair-gauche">			
-			<div class="titre">Identité</div>
-			<input type="hidden"  name="mode"  value="INSERTION">
-			<input type="hidden"  name="code_obs"  value="">
-			<input type="hidden"  name="nouveau_mot_de_passe"  value="">
-			<input type="hidden"  name="conf_passe"  value="">
-
-		Nom: <input type="text" value="" style="margin-left: 22px; width:350px" name="nom"><br>
-		Prénom: <input type="text" value="" style="width:350px" name="prenom"><br>
-		Courriel: <input type="email" value="" style="margin-left: 0px; width:350px" name="email">
-		<p align=right><INPUT type="submit" name="maj" value="Créer un compte"></p>
-		</div>
-	</form>
-</div>
- <?php  
-}}
+        }}
 ?>

@@ -106,9 +106,11 @@ if(!empty($_POST))
           }
           else
           {
+			  ?>
          <script>alert ("Un problème est survenu.");
 			document.location.href="Structure.php";
          </script>
+<?php
           }
         }
         else

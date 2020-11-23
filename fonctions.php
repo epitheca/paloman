@@ -423,6 +423,21 @@ $res = $bd->execRequete
     return $bd->objetSuivant ($res);
 }
 
+//Création d'un mot de passe
+function password()
+{
+	//Génération d'un code aléatoire
+	// Initialisation des caractères utilisables
+    $characters = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
+	$i=0;
+	$password="";
+	
+    for($i=0;$i<50;$i++)
+    {
+        $password .= ($i%2) ? strtoupper($characters[array_rand($characters)]) : $characters[array_rand($characters)];
+    }
+    return $password;
+}
 //Fonction pour la recherche d'observateurs associés
 function observateurAssocie ($obsPrincipal, $bd)
 {
@@ -454,10 +469,9 @@ function ControleObs ($tableau)
 // On vérifie que les champs importants ont été saisis
    if ($tableau['email']=="") 
     $message = "Vous devez saisir une adresse de courriel.\\n";
-  else if (!ControleEmail($tableau['email']))
+  else if (!filter_var ($tableau['email'], FILTER_VALIDATE_EMAIL))
     $message = "Votre email doit être de la forme xxx@yyy[.zzz].\\n";
     
-     
   if (isSet ($tableau['mot_de_passe']))
     {
       if ($tableau['mot_de_passe']=="" 

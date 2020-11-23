@@ -13,31 +13,25 @@ $code_obs = "$observateur->code_obs";
 Entete ("epitheca.fr", "6", $code_obs, $bd);
 }
 
-if (isset($_POST['envoyer']));
-{
-?>
-<BODY onLoad=""setTimeout(window.close, 10000)"">
-<?PHP
-}
-
-
-if (isset($_POST['tester']))
+if (isset($_POST['valider']))
 {
 	//Récupération des valeurs
 	$mail=$_POST['email'];
+	if (!filter_var ($mail, FILTER_VALIDATE_EMAIL)) 
+	{
+		?>
+		<script>
+			alert  ("L'adresse de courriel doit être de la forme xxx@yyy[.zzz].");
+					document.location.href="ObservateursMAJ.php";
+		</script>
+		<?php
+	}
+	else
+	{
 	$obs=$_POST['code_obs'];
 	
-	//Génération d'un code aléatoire
-	// Initialisation des caractères utilisables
-    $characters = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z");
-	$i=0;
-	$password="";
-	
-    for($i=0;$i<50;$i++)
-    {
-        $password .= ($i%2) ? strtoupper($characters[array_rand($characters)]) : $characters[array_rand($characters)];
-    }
-    
+	$password=password();
+	    
     $password_url_accepter="https://epitheca.fr/Observateurs_association.php?cle=$password&accept=yes";
     $password_url_refuser="https://epitheca.fr/Observateurs_association.php?cle=$password&accept=no";
 	
@@ -47,12 +41,10 @@ if (isset($_POST['tester']))
 	if (isset($existe->nom))
 	{
 		?>
-		<div class="bloc-50%-clair-gauche">			
-			<div class="titre">Demande d'association</div>
-			Un mail vient d'être envoyé pour demander à <?php echo "$existe->prenom $existe->nom";?> de pouvoir être associé à vos données.
-			<br><br>
-		</div>		
-
+		<script>
+		alert ("Un message vient d'être envoyé à cet observateur pour lui demandé s'il accepte d'être associé à vos données.");
+				document.location.href="ObservateursMAJ.php";
+			</script>
 			<?php
 								
 			//Extraction des renseignements sur l'observateur faisant la demande
@@ -63,14 +55,10 @@ if (isset($_POST['tester']))
 			$nom_obs=$obs->nom;
 			
 			//Vérification de l'existence de la demande précédente
-			$select  = "SELECT * FROM observateurs_demande WHERE code_obs_demande='$existe->code_obs' AND code_obs='$code_obs'";
-			$resultat = $bd->execRequete ($select);
-			while ($bo = $bd->objetSuivant ($resultat))
-				{
-				$requete  = "DELETE FROM observateurs_demande WHERE id_demande='$bo->id_demande'";
-				$resultat = $bd->execRequete ($requete);
-				}
-			
+			$resultat = $bd->execRequete ("SELECT * FROM observateurs_demande WHERE code_obs_demande='$existe->code_obs' AND code_obs='$code_obs'");
+			while ($bq = $bd->objetSuivant ($resultat))
+			$resultat2 = $bd->execRequete ("DELETE FROM observateurs_demande WHERE code_obs_demande='$existe->code_obs' AND code_obs='$code_obs'");
+							
 			//Insertion dans la table des demandes
 			//Calcul de la date dans une semaine
 			$timestamp= date ("Y-m-d H:i:s", strtotime('+1 week'));
@@ -112,21 +100,16 @@ if (isset($_POST['tester']))
 	 
 mail ($to, "Demande d'association sur la base Epitheca.fr", $message, $headers);
 		}
-			
 	else 
 	{
 			?>
-		<div class="bloc-50%-clair-gauche">			
-			<div class="titre">Demande d'association</div>
-			Aucun observateur n'est associé à cette adresse mail.
-			<br><br>
-		</div>		
-
+			<script>
+				alert ("	Aucun observateur n'est associé à cette adresse mail. Cette opération sera possible quand il possédera un compte sur cette base.");
+				document.location.href="ObservateursMAJ.php";
+			</script>		
 			<?php
-
-		}
-	
-}
+		}	
+}}
 // Affichage du pied de page
 PiedDePage($session, $code_obs, $bd);
   

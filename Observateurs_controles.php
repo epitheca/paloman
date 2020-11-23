@@ -158,9 +158,7 @@ for($u = 1; $u <= $nb_caract; $u++) {
 		$resultat = $bd->execRequete ("SELECT * FROM observateurs WHERE nom='$nom' && prenom='$prenom' && email='$email'");     
 	while ($bo = $bd->objetSuivant ($resultat)) 
     $code=$bo->code_obs;
-	   
-	
-    }
+	   }
 	
 }}
 

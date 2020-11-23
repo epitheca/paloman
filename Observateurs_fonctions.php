@@ -41,8 +41,8 @@ function observateursAssociesReverse ($code_obs, $bd)
   	
   	<form method="post" action="Observateurs_demande.php">
 	<input type="hidden"  name="code_obs"  value="<?php echo $code_obs?>">
-	<input type="email"  name="email"  placeholder="Saisissez l'adresse" >
-	<input type="submit" name="tester" value="Valider">
+	<input type="email"  name="email"  placeholder="Saisissez l'adresse" required >
+	<input type="submit" name="valider" value="Valider">
 	</form>
 	<?php
 }

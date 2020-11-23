@@ -17,12 +17,9 @@ Entete ("epitheca.fr", "6", $code_obs, $bd);
 }
 
 $cle=$_GET['cle'];
-echo "ca marche, la clé est : $cle <br>";
 
 if ($_GET['accept']=="yes")
 {
-
-Echo "la demande est acceptée";	
 	
 //Recherche de l'existence de la clé dans la table
 $select  = "SELECT * FROM observateurs_demande WHERE id_demande='$cle'";
