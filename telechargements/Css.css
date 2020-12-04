@@ -1,0 +1,357 @@
+/*------------------------------------
+* La feuille de style du système de gestion de données naturalistes epitheca
+*------------------------------------
+*/
+
+/*Div pour l'entête */
+#bloc-tete{
+width:100%;
+overflow: hidden;
+}
+
+/*Div pour la largeur d'une page */
+#bloc-page{
+width:100%;
+height:auto;
+margin-left:auto;
+margin-right:auto;
+overflow: hidden;
+padding-bottom:8px;
+}
+
+/*Div pour le pied de page */
+#bloc-pied{
+width:100%;
+height:auto;
+margin-left:auto;
+margin-right:auto;
+overflow: hidden;
+padding:8px;
+background-color:#4F6457;
+}
+
+/*Div bandeau observateurs*/
+.obs{
+width:100%; 
+}
+
+/*Div de 610 pour le quoi de neuf */
+.bloc-610-quoideneuf{
+width:594px;
+max-height:600px;
+Overflow:auto;
+float:left;
+text-align:left;
+margin-top:8px;
+padding:8px;
+}
+
+.bloc-350-quoideneuf{
+width:334px;
+float:right;
+text-align:center;
+padding:8px;
+margin-top:8px;
+}
+
+/*Div contenant pour le quoi de neuf */
+.bloc-moyen-quoideneuf{
+Overflow:auto;
+float:left;
+text-align:left;
+margin-bottom:8px;
+background-color:rgb(359,93,23);
+}
+
+.bloc-clair-quoideneuf{
+Overflow:auto;
+float:left;
+text-align:left;
+margin-bottom:4px;
+background-color:rgb(175,199,254);
+}
+
+.titre-entete{
+font-size:5vw;
+text-align:center;
+display:inline-block;
+color:#4F6457;
+padding-bottom:8px;
+}
+
+/*Ancre*/
+A {
+text-decoration:none; 
+color:#E57036;
+}
+
+a.lien_fonce {
+color:#274100;
+font-weight : bold;
+}
+
+/*Paragraphes*/
+
+p {
+margin: 0
+}
+
+p.aere {
+margin-top:10px;
+}
+
+/*Divs pour le carnet*/
+.flottante {
+background-image:url("images/carnet.png");
+  margin: 2px;
+  float: left;
+  width: 120px;
+  height: 150px;
+  text-align: center;
+  font-size: 13px;
+  }
+  
+.conteneur {
+	width: 100%;
+	margin-left:auto;
+	margin-right:auto;	
+overflow: hidden;
+padding-bottom:10px;
+}
+
+.spacer {
+  clear: both;
+}
+
+/*Style pour la session*/
+.connection{
+font-family:arial;
+font-size:16px;}
+
+/*Div avertissement 100 % */
+.bloc-avertissement-100pc{
+background-color:#ffc83c;
+margin-bottom:8px;
+padding:8px;
+text-align:center;
+font-size:20px;
+}
+
+#bloc-tete >.lisere-clair{
+width:100%;
+height:3px;
+background-color:#284200;
+}
+ 
+/*Span pour les info bulles*/
+span.info{
+position:relative;
+z-index:24;
+color:black;
+text-decoration:none
+}
+ 
+span.info:hover{
+z-index:25;
+background-color:transparent
+}
+ 
+span.info span{
+display: none
+}
+ 
+span.info:hover span{
+display:block;
+position:absolute;
+background-color:#ffc83c;
+color:black;
+text-align: left;
+padding:8px;
+}
+
+/*Span pour les info bulles des images*/
+span.info-image{
+position:relative;
+z-index:24;
+text-decoration:none;
+}
+
+span.info-image:hover{
+z-index:25;
+}
+
+span.info-image span{
+display: none
+}
+
+span.info-image:hover span{
+z-index:26;
+display:block;
+position:absolute;
+top:-8px; left:-8px; width:220px;
+background-color:#ffc83c;
+text-align: center;
+padding:8px;
+font-size:14px;
+}
+
+/*Span pour les info bulles vers la gauche*/
+span.info-gauche{
+position:relative;
+z-index:24;
+text-decoration:none;
+}
+ 
+span.info-gauche:hover{
+z-index:25;
+}
+ 
+span.info-gauche span{
+display: none
+}
+ 
+span.info-gauche:hover span{
+z-index:26;
+display:block;
+position:absolute;
+top:20px; left:10px; width:230px;
+background-color:#ffc83c;
+text-align: center;
+padding:8px;
+font-size:14px;
+}
+
+/*Span pour les info bulles vers la droite alignées à gauche*/
+span.info-droite-gauche{
+position:relative;
+z-index:24;
+text-decoration:none;
+}
+ 
+span.info-droite-gauche:hover{
+z-index:25;
+}
+ 
+span.info-droite-gauche span{
+display: none
+}
+ 
+span.info-droite-gauche:hover span{
+z-index:26;
+display:block;
+position:absolute;
+top:-80px; left:-37px; width:116px;
+background-color:#ffc83c;
+text-align:left;
+padding:8px;
+font-size:14px;
+}
+
+/*span pour les infos bulles des espèces*/
+span.info_espece{
+position:relative;
+z-index:24;
+color:black;
+text-decoration:none
+}
+ 
+span.info_espece:hover{
+z-index:25;
+background-color:transparent
+}
+ 
+span.info_espece span{
+display: none
+}
+ 
+span.info_espece:hover span{
+z-index:26;
+display:block;
+position:absolute;
+width:150px;
+background-color:#ffc83c;
+color:black;
+text-align: left;
+padding:8px;
+}
+
+fieldset {
+border-style: none;
+margin:0px;
+}
+
+submit {
+	font-family:arial;
+    font-size:20px;
+    color:yellow;
+}
+
+select {
+	font-family:arial;
+	font-size:16px;
+	padding-top :1px;  
+	padding-right:10px;
+	padding-bottom:3px;
+	margin-top:10px;	
+}
+
+table {
+  font-size:14px;
+ }
+
+/*Image de chargement des fichiers*/
+img.pourcent { 
+ background: #ffffff url(images/pourcent-bg.png) top left no-repeat; 
+ background-position: 0 0; 
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+.centrer {
+max-width: 400px;
+width:100%;
+text-align:center;
+margin:auto;
+}
+
+.charte {
+width:90%;
+height:500px;
+}
+
+ /*Div pour afficher/masquer un div */
+#hidden { display: block; }
+#hidden_0 { display: none; }
+#hidden_1 { display: none; }
+#hidden_2 { display: none; }
+
+/*Div pour le flux de données*/
+.flux_donnees_gauche{
+text-align:left;
+}
+
+.tableau-observateurs-1{
+float:left;
+width:200px;
+padding-top:2px;
+font-size:14px;
+overflow:hidden;
+}
+
+.tableau-observateurs-2{
+float:left;
+width:100px;
+padding-top:2px;
+font-size:14px;
+overflow:hidden;
+text-align:right;
+}
+
+.tableau-observateurs-3{
+float:left;
+width:158px;
+padding-top:2px;
+font-size:14px;
+text-align:right;
+}
