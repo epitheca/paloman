@@ -9,7 +9,6 @@ require_once ("");
 require_once (CHEMIN."HTML.php");  
 
 // Modules et classes
-require_once (CHEMIN."Tableau.class.php");
 require_once (CHEMIN."BDMySQL.class.php");
 
 // Fonctions du site

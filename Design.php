@@ -20,7 +20,6 @@ This file is part of epitheca.
 <?php
 // Fonctions définissant le design du site
 
-require_once ("Tableau.class.php");
 require_once ("HTML.php");
 
 function Entete ($titre, $texte, $code_obs, $bd)
