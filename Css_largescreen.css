@@ -49,7 +49,7 @@ padding:0.5%;
 overflow:auto;
 width:47%;
 float:left;
-text-align:left;
+text-align:justify;
 font-size:1vw;
 }
 
@@ -85,6 +85,17 @@ text-align:left;
 font-size:1vw;
 }
 
+.index_structure_logo{
+width:50px;
+height:50px;
+float:left;
+}
+
+.index_structure_nom{
+float:left;
+text-align:center;
+}
+
 .tresgros
 {
 font-size:4vw; ;
@@ -114,6 +125,13 @@ padding-top:20%;
 .sous-titre
 {
 font-size:1.5vw;
+padding-top: 10px;
+}
+
+.sous-sous-titre
+{
+font-size:1.2vw;
+padding-top: 5px;
 }
 
 .img_entete{

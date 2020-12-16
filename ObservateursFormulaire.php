@@ -3,6 +3,7 @@
 
 include ("Listes.php");
 require ("Observateurs_fonctions.php");
+require ("Structure_fonctions.php");
 
 function Formobservateurs ($mode, $code, $bd) 
 { 
@@ -19,7 +20,7 @@ function Formobservateurs ($mode, $code, $bd)
 	<div class="titre">Votre identité</div>
 		<input type="hidden"  name="mode"  value="MAJperso">
 		<input type="hidden"  name="code_obs"  value="<?php echo $code?>">
-		Prénom :<input type="text" value="<?php echo $bo->prenom;?>" name="prenom"><br>
+		Prénom : <input type="text" value="<?php echo $bo->prenom;?>" name="prenom"><br>
 		NOM : <input type="text" value="<?php echo $bo->nom;?>" name="nom"><br>
 		Courriel: <input type="email" value="<?php echo $bo->email;?>"  name="email">
 		<br><br>
@@ -39,10 +40,20 @@ function Formobservateurs ($mode, $code, $bd)
 		
 <?php
 		//Vérification de la liste des observateurs associés
+		?><div class="sous-titre">Association avec d'autres observateurs</div>	
+	<?php
 	$obs_associe=observateursAssocies ($code, $bd);
 	
 		//Proposition d'association
-	$obs_demande=observateursAssociesReverse ($code, $bd);
+	$obs_demande=observateursAssociesReverse ($code);
+	
+		//Module pour les associations
+	$obs_stucture_acceptee=observateursStuctureAcceptee ($code, $bd);
+
+	$obs_structure_stoppee=observateursStuctureStoppee($code, $bd);
+
+	$obs_structure_proposition=structure_proposition ($code, $bd)
+	
 	
 		?>
 </div>

@@ -15,7 +15,6 @@ margin-top:8px;
 margin-left:0.5%;
 padding:0.5%;
 overflow: hidden;
-width:95%;
 font-size:4vw;
 text-align:justify;
 }
@@ -23,7 +22,6 @@ text-align:justify;
 /*Div de 50% */
 .bloc-50pc-gauche{
 padding:3px;
-width:95%;
 font-size:4.5vw;
 text-align : center;
 }
@@ -53,8 +51,7 @@ font-size:1.5vw;
 /*Div de 50% */
 .bloc-50pc-droit{
 padding:3px;
-width:95%;
-text-align : left;
+text-align : justify;
 }
 
 /*Div de 50% */
@@ -87,6 +84,17 @@ text-align:center;
 font-size:4vw;
 }
 
+.index_structure_logo{
+margin: 0 auto;
+     width: 50px;
+}
+
+.index_structure_nom{
+margin: 0 auto;
+     width: 100%;
+     text-align:center;
+}
+
 .tresgros
 {
 font-size:10vw; ;
@@ -116,6 +124,11 @@ padding-bottom:8px;
 {
 font-size:5vw ;
 text-align:left;
+}
+
+.sous-sous-titre
+{
+font-size:3vw;
 }
 
 .img_entete{

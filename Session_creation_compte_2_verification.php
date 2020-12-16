@@ -15,7 +15,6 @@ if ($_POST['valider']) {
 	{
 		?>
 	<script type="text/javascript">
-			<!--
 			window.alert("<?php echo "Un observateur avec cet email existe déjà." ?>");
 			window.location.replace("https://epitheca.fr");
 			//-->

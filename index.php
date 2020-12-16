@@ -5,6 +5,7 @@ session_start();
 require("Util.php");
 require_once ("index_fonction.php");
 require_once ("index_pasdedonnee.php");
+require_once ("Structure_fonctions.php");
 
 // Connexion à la base
 $bd = Connexion (NOM, PASSE, BASE, SERVEUR);
@@ -41,6 +42,7 @@ $nbrtotal = Calcdontotal ($code_obs, '', $bd);
 	
 	<div class="bloc-50pc-droit">	
 	<?php
+	$structure=structure_proposition ($code_obs, $bd);
 	include ("index_fluxdonnees.php");
 	include ("acces_rapide.php");
 	?>
