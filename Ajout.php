@@ -81,7 +81,6 @@ $existence = VerificationExistenceDonnee ($numeroobs,$bd);
 		{
 	?>  
 			<script>
-			<!--
 			window.alert("<?php echo "Vous ne pouvez pas supprimer cette donnée." ?>");
 			window.location.replace("index.php");
 			//-->
