@@ -25,10 +25,7 @@ if ($nbrtotal<>0)
     
 //Affichage  de la date 
     echo '<br><div class="flux_donnees_gauche">';
-    list($year, $month, $day) = explode("-", $date);
-    $months = array("janvier", "février", "mars", "avril", "mai", "juin",
-    "juillet", "août", "septembre", "octobre", "novembre", "décembre");
-    echo $lastmodified = "Le $day ".$months[$month-1]." $year";
+    echo $dateenfrancais=dateenfrancais($date);
     $url = "Ajout.php?mode=MAJ&numeroobs=$bo->numero";
     echo "<br><a href=$url >$nom_espece->NOM_VALIDE (donnée n° $bo->numero) </a></div>";
 	

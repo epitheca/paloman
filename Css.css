@@ -315,6 +315,11 @@ text-align:center;
 margin:auto;
 }
 
+.charte {
+width:90%;
+height:500px;
+}
+
  /*Div pour afficher/masquer un div */
 #hidden { display: block; }
 #hidden_0 { display: none; }
@@ -324,6 +329,13 @@ margin:auto;
 /*Div pour le flux de données*/
 .flux_donnees_gauche{
 text-align:left;
+}
+
+/*Div pour le flux de validation*/
+.flux_donnees_validation{
+text-align:left;
+border: 0.3rem solid;
+border-color: #4F6457;
 }
 
 .tableau-observateurs-1{

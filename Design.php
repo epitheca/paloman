@@ -19,7 +19,6 @@ This file is part of epitheca.
 
 <?php
 // Fonctions définissant le design du site
-
 require_once ("HTML.php");
 
 function Entete ($titre, $texte, $code_obs, $bd)
@@ -68,7 +67,12 @@ function Entete ($titre, $texte, $code_obs, $bd)
 	//Récupération du nom et du prénom
     $obs=Chercheobservateursaveccode ($code_obs, $bd, $format=FORMAT_OBJET);
     $prenom=$obs->prenom;
-    $nom=$obs->nom;
+	$nom=$obs->nom;
+	$mode=$obs->mode;
+    //Est-il responsable d'une structure ?
+    $structure=ChercheStructure ($code_obs, $bd);
+    if(isset($structure->nom)) $lienStructure="<a href='ChangerMode.php?mode=structure'>Gérer $structure->nom</a>";
+    else $lienStructure="";
 	}
     
 if ($texte=="1") $Accueil='class="lien_fonce"';
@@ -78,7 +82,9 @@ else $Ajout="";
 if ($texte=="3") $Consultation='class="lien_fonce"';
 else $Consultation="";
 
-  //Div pour le bandeau
+  //Div pour le bandeau pour les observateurs
+  if ($mode=="observateur")
+  {
 	?>
             <div class="entete-1">
             <a <?php echo $Accueil;?> href=<?php CHEMIN_URL?>"./index.php"> <img src="images/logo_sanstitre.png" class="img_logo" alt="chargement de l'image"><br><p class="text_logo">epitheca.fr</p> </a>
@@ -93,9 +99,36 @@ else $Consultation="";
             </div>
 	<div class="spacer"><br></div>
 	<div class="lisere-clair"></div>
-    <?php echo "Observateur connecté : $prenom $nom"; ?>
+    <?php echo "Observateur connecté : $prenom $nom $lienStructure"; ?>
   </div>
   <?php  
+  }
+
+  //Div pour le bandeau pour les observateurs
+  if ($mode=="structure")
+  {
+	?>
+            <div class="entete-1">
+            <a <?php echo $Accueil;?> href=<?php CHEMIN_URL?>"./Structure_index.php"> <img src="images/logo_sanstitre.png" class="img_logo" alt="chargement de l'image"><br><p class="text_logo">Votre structure</p> </a>
+            </div>
+                        
+            <div class="entete-2">
+            <a <?php echo $Ajout;?> href=<?php CHEMIN_URL?>"./Structure_observateur.php"><img src="images/logo_observateur.png" class="img_entete" alt="chargement de l'image"><p class="text_entete">Coordinateurs et observateurs</p></a>
+            </div>
+        
+            <div class="entete-3">
+            <a <?php echo $Consultation;?> href=<?php CHEMIN_URL?>"./Consultation.php"><img src="images/logo_consulter.png" class="img_entete" alt="chargement de l'image"><p class="text_entete">Consulter-Exporter</p></a>
+            </div>
+	<div class="spacer"><br></div>
+	<div class="lisere-clair"></div>
+	<?php
+	// Modification du lien pour le changement de mode
+	$lienStructure="<a href='ChangerMode.php?mode=observateur'>Passer en mode observateur</a>";
+	echo "Observateur connecté : $prenom $nom $lienStructure"; ?>
+  </div>
+  <?php  
+  }
+
 }
 
 // Fonction affichant un pied de page, et interrompant le script
@@ -104,7 +137,7 @@ function PiedDePage ($session, $code_obs, $bd)
 	
 //Création liens pour le pied de page
  $admin= Ancre_renomme ("mailto:contact@epitheca.fr", "Contact");
- $quoideneuf= Ancre_renomme ("./quoideneuf.php", "Version 1.0");  
+ $quoideneuf= Ancre_renomme ("./quoideneuf.php", "Version 1.0.5");  
  $observateurs=Ancre_renomme("Observateurs.php","Gestion observateurs");
  $statistiques=Ancre_renomme("Stats_admin.php","Statistiques");
 	
@@ -160,7 +193,7 @@ function PiedDePage ($session, $code_obs, $bd)
 		<div class="spacer"></div>
 		
 		<div class="pied-100pc">
-		<?php echo "Il y a actuellement $nombre  données gérées par epitheca.fr";?>
+		<?php //echo "Il y a actuellement $nombre  données gérées par epitheca.fr";?>
 		<br>
 		<br>
 		Le code source de cette application libre sous licence GPL3 est disponible sur

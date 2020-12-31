@@ -52,12 +52,12 @@ function observateursStuctureAcceptee ($code_obs,$bd)
 	$i=0;
 
 	//Recherche de l'existence d'une acceptation en cours
-	$res = $bd->execRequete  ("SELECT COUNT(*) AS nombre FROM structure_observateurs WHERE mode='accepte' AND code_observateurs=$code_obs");
+	$res = $bd->execRequete  ("SELECT COUNT(*) AS nombre FROM structure_observateurs WHERE mode='accepte' AND code_observateur=$code_obs");
 		while ($bo = $bd->objetSuivant ($res))
 			{
 				 if ($bo->nombre>0)
 				{
-					$res = $bd->execRequete  ("SELECT * FROM structure_observateurs WHERE mode='accepte' AND code_observateurs=$code_obs");
+					$res = $bd->execRequete  ("SELECT * FROM structure_observateurs WHERE mode='accepte' AND code_observateur=$code_obs");
 					while ($bl = $bd->objetSuivant ($res))
 					{ 
 					$i++;
@@ -120,12 +120,12 @@ function observateursStuctureStoppee ($code_obs,$bd)
 	$i=0;
 
 	//Recherche de l'existence d'une acceptation en cours
-	$res = $bd->execRequete  ("SELECT COUNT(*) AS nombre FROM structure_observateurs WHERE mode='stop' AND code_observateurs=$code_obs");
+	$res = $bd->execRequete  ("SELECT COUNT(*) AS nombre FROM structure_observateurs WHERE mode='stop' AND code_observateur=$code_obs");
 		while ($bo = $bd->objetSuivant ($res))
 			{
 				 if ($bo->nombre>0)
 				{
-					$res = $bd->execRequete  ("SELECT * FROM structure_observateurs WHERE mode='stop' AND code_observateurs=$code_obs");
+					$res = $bd->execRequete  ("SELECT * FROM structure_observateurs WHERE mode='stop' AND code_observateur=$code_obs");
 					while ($bl = $bd->objetSuivant ($res))
 					{ 
 					$i++;

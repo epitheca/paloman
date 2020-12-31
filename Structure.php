@@ -110,7 +110,10 @@ Entete ("epitheca.fr", "1", $code_obs, $bd);
 
 			<!-- Liste des observateurs collaborant actuellement -->
 			<p class="sous-titre">Observateurs qui collaborent avec votre structure</p>
-
+			<?php
+			// Script pour les nouvelles demandes
+			TabStructureObservateurs ($structure->code, $bd);
+			?>
 		</div>
 	</div>
 </div>

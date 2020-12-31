@@ -46,7 +46,7 @@ if (isset($_POST['acces_rapide']))
 		?>
 			<SCRIPT>
 				document.location.href="https://epitheca.fr"
-				</SCRIPT>
+			</SCRIPT>
 	<?php
 	}
 }

@@ -17,7 +17,7 @@ function AjoutCoordinateur ($code_structure,  $bd)
 {
 ?>
 	<form method="post" action="Structure_ajout_coordinateur.php"><br>
-	<label for="email" class="sous-sous-titre">Ajouter un coordinateur</label><br>
+	<label for="email" class="sous-titre">Ajouter un coordinateur</label><br>
 		<input  placeholder="Adresse de courriel"  id="email" type="email" name="email" size="30">
 		<input type="hidden"  name="structure"  value="<?php echo $code_structure;?>">
 		<br>
@@ -40,7 +40,7 @@ function structure_proposition ($code_obs, $bd)
     while ($bo = $bd->objetSuivant ($res))
     {
 		 //Vérification de l'existence d'une acceptation ou d'un refus préalable 
-		 $res = $bd->execRequete  ("SELECT COUNT(*) AS nombre  FROM structure_observateurs WHERE code_structure=$bo->code AND code_observateurs=$code_obs");
+		 $res = $bd->execRequete  ("SELECT COUNT(*) AS nombre  FROM structure_observateurs WHERE code_structure=$bo->code AND code_observateur=$code_obs");
 				while ($bv = $bd->objetSuivant ($res))
 				{
 				 if($bv->nombre==0) $mode="nouveau";

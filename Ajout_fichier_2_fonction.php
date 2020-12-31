@@ -72,10 +72,8 @@ if(isset($_POST["submit"])) {
 if ($_FILES["fileToUpload"]["size"] > 500000) {
 			?>
 			<script type="text/javascript">
-			<!--
 			window.alert("<?php echo "Le fichier est trop volumineux." ?>");
 			window.location.replace("Ajout_fichier_2.php?numero=<?php echo $numero;?>");
-			//-->
 			</script>    
 			<?php    $uploadOk = 0;
 }
@@ -85,10 +83,8 @@ if($type != "jpg" && $type != "png" && $type != "jpeg"
 && $type != "gif" && $type != "mp3") {
 			?>
 			<script type="text/javascript">
-			<!--
 			window.alert("<?php echo "Le fichier doit être au format mp3, gif, png, jpg ou jpeg" ?>");
 			window.location.replace("Ajout_fichier_2.php?numero=<?php echo $numero;?>");
-			//-->
 			</script>    
 			<?php
 			$uploadOk = 0;

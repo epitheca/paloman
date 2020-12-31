@@ -14,15 +14,7 @@ function Connexion ($login, $passe, $base, $serveur)
   // Choix de la sous-classe en fonction de la configuration
   switch (SGBD)
     {
-    case "PostgreSQL":
-      $bd = new BDPostgreSQL ($login, $passe, $base, $serveur);
-      break;
- 
-    case "SQLite":
-      $bd = new BDSQLite ($login, $passe, $base, $serveur);
-      break;
-
-    default: // MySQL par défaut
+      default: // MySQL par défaut
       $bd = new BDMySQL ($login, $passe, $base, $serveur);
       break;
     }
@@ -380,6 +372,60 @@ function Chercheobservateurs ($email, $bd, $format=FORMAT_OBJET)
     return $bd->ligneSuivante ($res);    
 }
 
+// Cherche coordination
+function coordination ($code_obs, $bd) {
+	// L'observateur est-il dans la table ?
+	$res = $bd->execRequete ("SELECT * FROM structure_coordinateurs WHERE code_observateur = '$code_obs'");
+	while ($bo = $bd->objetSuivant ($res))
+	{
+	// Quelle est la structure ?
+	$structure=ChercheStructureAvecCodeStructure ($bo->code_structure, $bd);
+
+	// Requete de recherche des données dans la zone géographique
+		$resultat = $bd->execRequete  ("SELECT * FROM donnees 
+		WHERE latitude BETWEEN $structure->y_latitude AND $structure->x_latitude 
+		AND longitude BETWEEN $structure->x_longitude AND $structure->y_longitude 
+		AND obs_1 = (SELECT code_observateur FROM structure_observateurs WHERE code_structure=$bo->code_structure)");
+	  
+	  while ($bi = $bd->objetSuivant ($resultat))
+	  {		  
+		// Recherche du groupe de l'espèce
+		$groupe=ChercheGroupeSp ($bi->espece, $bd, $format=FORMAT_OBJET);
+
+		// Le groupe de cette espece fait-il partie des groupes gérés par cet observateur ?
+		$res = $bd->execRequete ("SELECT COUNT(*) as nombre FROM structure_coordinateurs
+		WHERE code_observateur = '$code_obs'
+		AND taxon= '$groupe'");
+		while ($bj = $bd->objetSuivant ($res)) $nombre=$bj->nombre;
+
+		
+		if ($nombre>0) 
+		{
+			// Récupération du nom de l'espèce
+			$nom_espece = ChercheSpavecCode ($bi->espece, $bd);
+			$nom_espece = $nom_espece->NOM_COMPLET_HTML;
+
+			// Récupération du nom du groupe
+			$res = $bd->execRequete ("SELECT * FROM classe_ordre WHERE Code_classe_ordre = '$groupe'");
+			while ($bk = $bd->objetSuivant ($res)) $groupe_francais=$bk->Classe_ordre;
+			
+			//Transformaton de la date
+			$dateenfrancais=dateenfrancais($bi->date);
+
+			echo "<div class='spacer'><br></div>";
+			echo "<div class='flux_donnees_validation'>";
+			echo "<span class='tresgrosvalidation'>N°$bi->numero</span> $dateenfrancais<br> <p class='trespetitvalidation'>(en tant que coordinateur des $groupe_francais pour $structure->nom) </p><br>";
+			echo "<p class='tresgrosvalidation'>$nom_espece</p>";
+			echo "</div>";
+			
+		}
+	  }
+	  		
+	}
+}
+
+
+
 //Controle des accès aux modifications
 function Controle_droit_donnee ($numero, $code_obs, $bd) {
 	
@@ -415,13 +461,29 @@ $res = $bd->execRequete
     return $bd->ligneSuivante ($res);   	
 }
 
-// Recherche du nom d'une structure
+// Recherche du nom d'une structure avec le code du responsable
 function ChercheStructure ($code, $bd)
 {
 $res = $bd->execRequete 
      ("SELECT * FROM structure WHERE code_responsable='$code'");
     return $bd->objetSuivant ($res);
 }
+
+// Recherche du nom d'une structure
+function ChercheStructureAvecCodeStructure ($code, $bd)
+{
+$res = $bd->execRequete 
+     ("SELECT * FROM structure WHERE code='$code'");
+    return $bd->objetSuivant ($res);
+}
+
+// Recherche du nom d'une structure
+function ChercheCoordination ($code, $bd)
+{
+$res = $bd->execRequete 
+     ("SELECT * FROM structure_coordinateurs WHERE code_observateur='$code'");
+    return $bd->objetSuivant ($res);
+}	
 
 //Création d'un mot de passe
 function password()
@@ -790,6 +852,14 @@ function datesitetoserver($date)
 function dateservertosite($date)
 {
 return strftime('%d-%m-%Y',strtotime($date));
+}
+
+function dateenfrancais ($date)
+{
+	list($year, $month, $day) = explode("-", $date);
+    $months = array("janvier", "février", "mars", "avril", "mai", "juin",
+    "juillet", "août", "septembre", "octobre", "novembre", "décembre");
+    return $lastmodified = "Le $day ".$months[$month-1]." $year";
 }
 
 function styleduselect ($margegauche, $largeur)

@@ -100,6 +100,16 @@ margin: 0 auto;
 font-size:10vw; ;
 }
 
+.tresgrosvalidation
+{
+font-size:2vw; ;
+}
+
+.trespetitvalidation
+{
+font-size:0.5vw; ;
+}
+
 /*Titres*/
 .titre{
 font-size:7vw;
@@ -135,14 +145,8 @@ font-size:3vw;
 width:30%;
 }
 
-.text_entete{
-}
-
 .img_logo{
 width:30%;
-}
-
-.text_logo{
 }
 
 /*Div bandeau observateurs*/
